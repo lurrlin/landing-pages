@@ -3,11 +3,11 @@
    Para adaptar a qualquer nicho (confeitaria, barbearia, clínica, oficina, pet),
    altere apenas as constantes abaixo.
    ========================================================================== */
-const WHATSAPP_NUMBER = "5555999999999";
+const WHATSAPP_NUMBER = "5547992263903";
 
 const SITE_CONFIG = {
   nomeNegocio: "Confeitaria Dona Sonia",
-  whatsappExibicao: "(55) 99999-9999",
+  whatsappExibicao: "(47) 99226-3903",
   // Textos de abertura no WhatsApp (ex. outros nichos: "gostaria de agendar um horário" / "gostaria de solicitar um orçamento")
   mensagemGeral: "gostaria de fazer uma encomenda.",
   mensagemItemPrefixo: "gostaria de encomendar",
