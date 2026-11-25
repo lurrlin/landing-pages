@@ -1,0 +1,132 @@
+:root {
+  --bg-page: #FAF8F5;
+  --text-main: #1F2937;
+  --brand-primary: #78350F;
+  --brand-soft: #FEF3C7;
+  --whatsapp-green: #16A34A;
+  --whatsapp-green-hover: #15803D;
+  --surface-card: #FFFFFF;
+  --border-subtle: rgba(120, 53, 15, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilitários ligados às variáveis CSS para personalização rápida */
+.text-brand {
+  color: var(--brand-primary);
+}
+
+.bg-brand {
+  background-color: var(--brand-primary);
+}
+
+.bg-brand-soft {
+  background-color: var(--brand-soft);
+}
+
+.border-brand-subtle {
+  border-color: var(--border-subtle);
+}
+
+.bg-surface-card {
+  background-color: var(--surface-card);
+}
+
+.bg-whatsapp {
+  background-color: var(--whatsapp-green);
+  color: #FFFFFF;
+}
+
+.bg-whatsapp:hover {
+  background-color: var(--whatsapp-green-hover);
+}
+
+/* Header com blur e sombra leve ao rolar */
+.site-header {
+  background-color: rgba(250, 248, 245, 0.88);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px -4px rgba(31, 41, 55, 0.08);
+  border-bottom-color: var(--border-subtle);
+}
+
+/* Micro-interações em botões e cards */
+.btn-transition {
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-transition:hover {
+  transform: translateY(-1px);
+}
+
+.btn-transition:active {
+  transform: translateY(0);
+}
+
+.product-card {
+  border: 1px solid var(--border-subtle);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 12px 28px -8px rgba(120, 53, 15, 0.12);
+  border-color: rgba(120, 53, 15, 0.25);
+}
+
+.product-card:hover .product-card-img {
+  transform: scale(1.05);
+}
+
+/* Animação suave de entrada ao rolar */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respeita preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .site-header,
+  .btn-transition,
+  .product-card,
+  .product-card-img {
+    transition: none !important;
+  }
+
+  .btn-transition:hover,
+  .product-card:hover .product-card-img {
+    transform: none;
+  }
+}
