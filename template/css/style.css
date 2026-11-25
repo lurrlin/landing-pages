@@ -1,12 +1,18 @@
+/* ==========================================================================
+   PALETA E PERSONALIZAÇÃO DO CLIENTE
+   Altere apenas as variáveis abaixo para adaptar as cores a um novo negócio.
+   ========================================================================== */
 :root {
-  --bg-page: #FAF8F5;
-  --text-main: #1F2937;
-  --brand-primary: #78350F;
-  --brand-soft: #FEF3C7;
+  --bg-page: #FAF7F2;          /* Fundo principal (creme quente) */
+  --bg-secondary: #F0E8DC;     /* Fundo secundário (bege suave) */
+  --text-main: #3F352D;        /* Textos principais (marrom acinzentado) */
+  --text-muted: #6B5B4E;       /* Textos de apoio com contraste adequado */
+  --brand-primary: #654321;    /* Títulos e destaques (marrom profundo) */
+  --brand-accent: #A67C52;     /* Detalhes e elementos decorativos (caramelo) */
+  --border-subtle: #E5D8C7;    /* Bordas suaves */
+  --surface-card: #FFFFFF;     /* Superfície dos cards */
   --whatsapp-green: #16A34A;
   --whatsapp-green-hover: #15803D;
-  --surface-card: #FFFFFF;
-  --border-subtle: rgba(120, 53, 15, 0.14);
 }
 
 html {
@@ -21,25 +27,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utilitários ligados às variáveis CSS para personalização rápida */
+/* Estados de foco visíveis para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
+/* Utilitários ligados às variáveis CSS */
 .text-brand {
   color: var(--brand-primary);
 }
 
-.bg-brand {
-  background-color: var(--brand-primary);
+.text-muted {
+  color: var(--text-muted);
 }
 
-.bg-brand-soft {
-  background-color: var(--brand-soft);
+.text-accent {
+  color: var(--brand-accent);
 }
 
-.border-brand-subtle {
-  border-color: var(--border-subtle);
+.bg-secondary {
+  background-color: var(--bg-secondary);
 }
 
 .bg-surface-card {
   background-color: var(--surface-card);
+}
+
+.border-brand-subtle {
+  border-color: var(--border-subtle);
 }
 
 .bg-whatsapp {
@@ -51,18 +68,35 @@ body {
   background-color: var(--whatsapp-green-hover);
 }
 
+.btn-secondary {
+  background-color: var(--surface-card);
+  color: var(--brand-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--brand-accent);
+}
+
+/* Faixa discreta de identificação demonstrativa */
+.demo-banner {
+  background-color: var(--brand-primary);
+  color: var(--bg-page);
+}
+
 /* Header com blur e sombra leve ao rolar */
 .site-header {
-  background-color: rgba(250, 248, 245, 0.88);
+  background-color: rgba(250, 247, 242, 0.92);
   border-bottom: 1px solid transparent;
   transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .site-header.is-scrolled {
-  background-color: rgba(250, 248, 245, 0.92);
+  background-color: rgba(250, 247, 242, 0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px -4px rgba(31, 41, 55, 0.08);
+  box-shadow: 0 4px 20px -4px rgba(101, 67, 33, 0.1);
   border-bottom-color: var(--border-subtle);
 }
 
@@ -85,12 +119,27 @@ body {
 }
 
 .product-card:hover {
-  box-shadow: 0 12px 28px -8px rgba(120, 53, 15, 0.12);
-  border-color: rgba(120, 53, 15, 0.25);
+  box-shadow: 0 12px 28px -8px rgba(101, 67, 33, 0.14);
+  border-color: var(--brand-accent);
 }
 
 .product-card:hover .product-card-img {
   transform: scale(1.05);
+}
+
+/* Fallback visual elegante caso alguma imagem falhe ao carregar */
+.img-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: var(--bg-secondary);
+  color: var(--brand-primary);
 }
 
 /* Animação suave de entrada ao rolar */

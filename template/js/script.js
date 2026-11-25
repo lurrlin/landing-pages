@@ -1,8 +1,15 @@
+/* ==========================================================================
+   CONFIGURAÇÃO CENTRALIZADA DO ESTABELECIMENTO
+   Para clonar este template para um novo cliente, edite as constantes abaixo.
+   ========================================================================== */
+const WHATSAPP_NUMBER = "5555999999999";
+
 const SITE_CONFIG = {
   nomeNegocio: "Confeitaria Dona Sonia",
-  whatsapp: "5555999999999",
-  instagramUrl: "https://instagram.com/confeitariadonasonia",
-  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Av.+J%C3%BAlio+de+Castilhos%2C+450+-+Centro%2C+Tr%C3%AAs+Passos+-+RS"
+  // Informe o endereço real do Instagram quando disponível (ex: "https://instagram.com/sualoja").
+  // Enquanto permanecer vazio (""), nenhum link fictício será exibido na página.
+  instagramUrl: "",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Prefeitura+Municipal+de+Brusque%2C+Pra%C3%A7a+das+Bandeiras%2C+77+-+Centro+I%2C+Brusque+-+SC"
 };
 
 function buildWhatsAppUrl(itemName) {
@@ -10,7 +17,7 @@ function buildWhatsAppUrl(itemName) {
     ? `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e gostaria de encomendar: ${itemName}`
     : `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e gostaria de fazer uma encomenda.`;
 
-  return `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 function initExternalLinks() {
@@ -22,18 +29,58 @@ function initExternalLinks() {
     link.setAttribute("rel", "noopener noreferrer");
   });
 
-  const instagramLinks = document.querySelectorAll("[data-instagram]");
-  instagramLinks.forEach((link) => {
-    link.setAttribute("href", SITE_CONFIG.instagramUrl);
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-  });
-
   const mapsLinks = document.querySelectorAll("[data-maps]");
   mapsLinks.forEach((link) => {
     link.setAttribute("href", SITE_CONFIG.mapsUrl);
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener noreferrer");
+  });
+
+  const instagramLinks = document.querySelectorAll("[data-instagram]");
+  instagramLinks.forEach((link) => {
+    const cleanUrl = SITE_CONFIG.instagramUrl.trim();
+    if (cleanUrl) {
+      link.setAttribute("href", cleanUrl);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      link.classList.remove("hidden");
+    } else {
+      link.classList.add("hidden");
+      link.removeAttribute("href");
+    }
+  });
+}
+
+function initImageFallbacks() {
+  const images = document.querySelectorAll("img[data-fallback-label]");
+  images.forEach((img) => {
+    const applyFallback = () => {
+      if (img.dataset.fallbackApplied === "true") return;
+      img.dataset.fallbackApplied = "true";
+
+      const wrapper = img.parentElement;
+      if (!wrapper) return;
+
+      const label = img.getAttribute("data-fallback-label") || img.getAttribute("alt") || SITE_CONFIG.nomeNegocio;
+      const fallback = document.createElement("div");
+      fallback.className = "img-fallback";
+      fallback.setAttribute("role", "img");
+      fallback.setAttribute("aria-label", label);
+
+      fallback.innerHTML = `
+        <svg class="w-8 h-8 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span class="text-sm font-medium">${label}</span>
+      `;
+
+      img.replaceWith(fallback);
+    };
+
+    img.addEventListener("error", applyFallback);
+    if (img.complete && img.naturalWidth === 0) {
+      applyFallback();
+    }
   });
 }
 
@@ -86,6 +133,7 @@ function initScrollReveal() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initExternalLinks();
+  initImageFallbacks();
   initHeaderScroll();
   initScrollReveal();
 });
