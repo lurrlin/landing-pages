@@ -3,15 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- PERSONALIZAÇÃO: Atualize título e descrição conforme o estabelecimento -->
+  <!-- PERSONALIZAÇÃO: Atualize título, descrição, prévia do WhatsApp (Open Graph) e favicon -->
   <title>Confeitaria Dona Sonia | Bolos, Tortas, Doces e Salgados em Brusque - SC</title>
   <meta name="description" content="Demonstração de landing page para confeitaria local em Brusque - SC. Bolos, tortas, doces e salgados sob encomenda.">
+  <meta name="theme-color" content="#654321">
+
+  <!-- Prévia rica ao compartilhar o link no WhatsApp / redes sociais (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Confeitaria Dona Sonia | Encomendas em Brusque - SC">
+  <meta property="og:description" content="Bolos, tortas, doces e salgados caseiros sob encomenda. Faça seu pedido direto pelo WhatsApp.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1587015692860-f3a8481e9865?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Favicon SVG embutido (mesmo bolinho do Hero; troque o SVG conforme o nicho do cliente) -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23654321'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath d='M6.5 14L8 20a1.5 1.5 0 0 0 1.45 1.1h5.1A1.5 1.5 0 0 0 16 20l1.5-6H6.5Z' fill='%23E5D8C7'/%3E%3Cpath d='M10.2 14l.6 7M13.8 14l-.6 7' stroke='%23654321' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M5.5 14c-1.1 0-1.7-.9-1.4-2 .2-.9 1-1.5 2-1.5.3-1.8 1.8-3.1 3.7-3.1.8 0 1.6.3 2.2.8.6-.5 1.4-.8 2.2-.8 1.9 0 3.4 1.3 3.7 3.1 1 0 1.8.6 2 1.5.3 1.1-.3 2-1.4 2H5.5Z' fill='%23FAF7F2'/%3E%3Ccircle cx='12' cy='5.5' r='1.9' fill='%23A67C52'/%3E%3C/g%3E%3C/svg%3E"
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Tailwind CSS via CDN para manter o template leve e sem etapa de build -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- PERSONALIZAÇÃO SEO LOCAL: Ao entregar para um cliente real, ajuste @type (ex: Bakery, HairSalon, AutoRepair, Dentist, LocalBusiness) e os dados reais -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Confeitaria Dona Sonia (Demonstração)",
+    "description": "Bolos, tortas, doces e salgados sob encomenda em Brusque - SC.",
+    "telephone": "+55-55-99999-9999",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Praça das Bandeiras, 77 - Centro I",
+      "addressLocality": "Brusque",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    },
+    "openingHours": "Tu-Sa 08:00-19:00"
+  }
+  </script>
 </head>
 <body class="antialiased">
 
@@ -22,7 +57,7 @@
 
   <!-- ======================================================================
        SEÇÃO 1: HEADER & TOPO (HERO)
-       PERSONALIZAÇÃO: Nome do negócio, cidade, subtítulo e horário
+       PERSONALIZAÇÃO: Nome do negócio, ícone SVG do nicho, cidade, subtítulo e horário
        ====================================================================== -->
   <header class="site-header sticky top-0 z-40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
@@ -56,12 +91,24 @@
     <section id="inicio" class="py-12 sm:py-16 md:py-20 border-b border-brand-subtle">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="max-w-2xl reveal">
-          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-secondary text-brand border border-brand-subtle mb-5">
-            <svg class="w-4 h-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            Terça a Sábado, das 08h às 19h
-          </span>
+          <!-- Ícone SVG do nicho (bolinho artesanal) + faixa de horário -->
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <div class="hero-emblem w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm shrink-0" aria-hidden="true">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                <path d="M6.5 14L8 20a1.5 1.5 0 0 0 1.45 1.1h5.1A1.5 1.5 0 0 0 16 20l1.5-6H6.5Z" fill="#E5D8C7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M10.2 14l.6 7M13.8 14l-.6 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M5.5 14c-1.1 0-1.7-.9-1.4-2 .2-.9 1-1.5 2-1.5.3-1.8 1.8-3.1 3.7-3.1.8 0 1.6.3 2.2.8.6-.5 1.4-.8 2.2-.8 1.9 0 3.4 1.3 3.7 3.1 1 0 1.8.6 2 1.5.3 1.1-.3 2-1.4 2H5.5Z" fill="#FAF7F2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <circle cx="12" cy="5.5" r="1.7" fill="#A67C52" stroke="currentColor" stroke-width="1.4"/>
+              </svg>
+            </div>
+
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-secondary text-brand border border-brand-subtle">
+              <svg class="w-4 h-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Terça a Sábado, das 08h às 19h
+            </span>
+          </div>
 
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand leading-tight">
             Confeitaria Dona Sonia
@@ -92,6 +139,22 @@
               Ver produtos
             </a>
           </div>
+
+          <!-- Destaques operacionais rápidos (fáceis de adaptar a qualquer comércio/serviço) -->
+          <ul class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-muted">
+            <li class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#A67C52]" aria-hidden="true"></span>
+              Aceitamos Pix e Cartão
+            </li>
+            <li class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#A67C52]" aria-hidden="true"></span>
+              Retirada ou entrega combinada
+            </li>
+            <li class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#A67C52]" aria-hidden="true"></span>
+              Atendimento direto no WhatsApp
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -467,7 +530,7 @@
 
   <!-- ======================================================================
        SEÇÃO 6: CONTATO, RODAPÉ E BOTÃO FLUTUANTE
-       PERSONALIZAÇÃO: Dados de contato e observação demonstrativa
+       PERSONALIZAÇÃO: Dados de contato preenchidos via SITE_CONFIG e aviso demonstrativo
        ====================================================================== -->
   <footer id="contato" class="border-t border-brand-subtle pt-10 pb-24 md:pb-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
@@ -485,6 +548,7 @@
             target="_blank"
             rel="noopener noreferrer"
             data-whatsapp
+            data-whatsapp-display
             class="hover:text-[#654321] transition-colors"
           >
             WhatsApp: (55) 99999-9999

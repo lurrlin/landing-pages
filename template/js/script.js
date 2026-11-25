@@ -1,11 +1,16 @@
 /* ==========================================================================
-   CONFIGURAÇÃO CENTRALIZADA DO ESTABELECIMENTO
-   Para clonar este template para um novo cliente, edite as constantes abaixo.
+   CONFIGURAÇÃO CENTRALIZADA DO ESTABELECIMENTO (TEMPLATE CORINGA)
+   Para adaptar a qualquer nicho (confeitaria, barbearia, clínica, oficina, pet),
+   altere apenas as constantes abaixo.
    ========================================================================== */
 const WHATSAPP_NUMBER = "5555999999999";
 
 const SITE_CONFIG = {
   nomeNegocio: "Confeitaria Dona Sonia",
+  whatsappExibicao: "(55) 99999-9999",
+  // Textos de abertura no WhatsApp (ex. outros nichos: "gostaria de agendar um horário" / "gostaria de solicitar um orçamento")
+  mensagemGeral: "gostaria de fazer uma encomenda.",
+  mensagemItemPrefixo: "gostaria de encomendar",
   // Informe o endereço real do Instagram quando disponível (ex: "https://instagram.com/sualoja").
   // Enquanto permanecer vazio (""), nenhum link fictício será exibido na página.
   instagramUrl: "",
@@ -14,8 +19,8 @@ const SITE_CONFIG = {
 
 function buildWhatsAppUrl(itemName) {
   const text = itemName
-    ? `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e gostaria de encomendar: ${itemName}`
-    : `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e gostaria de fazer uma encomenda.`;
+    ? `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e ${SITE_CONFIG.mensagemItemPrefixo}: ${itemName}`
+    : `Olá! Vi o site da ${SITE_CONFIG.nomeNegocio} e ${SITE_CONFIG.mensagemGeral}`;
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
@@ -27,6 +32,11 @@ function initExternalLinks() {
     link.setAttribute("href", buildWhatsAppUrl(item));
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener noreferrer");
+  });
+
+  const whatsappDisplays = document.querySelectorAll("[data-whatsapp-display]");
+  whatsappDisplays.forEach((el) => {
+    el.textContent = `WhatsApp: ${SITE_CONFIG.whatsappExibicao}`;
   });
 
   const mapsLinks = document.querySelectorAll("[data-maps]");

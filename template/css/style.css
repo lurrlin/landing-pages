@@ -79,6 +79,13 @@ button:focus-visible {
   border-color: var(--brand-accent);
 }
 
+/* Selo/ícone decorativo do Hero (adaptável por nicho) */
+.hero-emblem {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--brand-primary);
+}
+
 /* Faixa discreta de identificação demonstrativa */
 .demo-banner {
   background-color: var(--brand-primary);
